@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import arg from 'arg';
 import chalk from 'chalk';
-import getConfig from '..src/config/config-mgr.js';
+import getConfig from '../src/config/config-mgr.js';
 import start from '../src/commands/start.js';
 
 try {
