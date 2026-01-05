@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-const arg = require('arg');
+import arg from 'arg';
+import chalk from 'chalk';
+import getConfig from '..src/config/config-mgr.js';
+import start from '../src/commands/start.js';
 
 try {
   const args = arg({
@@ -8,11 +11,21 @@ try {
   });
 
   if (args['--start']) {
-    console.log('starting the app');
+    const config = getConfig();
+    start(config);
+  } else {
+    console.log(chalk.bgCyanBright('starting the app'));
   }
 } catch (e) {
-  console.log(e.message);
+  console.log(chalk.yellow(e.message));
+  console.log();
+  usage();
 }
 
+function usage() {
+  console.log(`${chalk.whiteBright('tool [CMD]')}
+    ${chalk.greenBright('--start')}\tStarts the app
+    ${chalk.greenBright('--build')}\tBuilds the app`);
+}
 
 
